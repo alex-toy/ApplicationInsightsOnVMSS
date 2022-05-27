@@ -1,5 +1,2 @@
-az batch pool supported-images list 
-    [--account-endpoint]
-    [--account-key]
-    [--account-name]
-    [--filter]
+$RG = "resourcegroup"
+bash ./setup-script/test.sh $RG

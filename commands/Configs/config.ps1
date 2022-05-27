@@ -14,7 +14,7 @@ $Global:Subscription = "Azure subscription 1"
 $Global:RGLocation = "centralus"
 "resource Group Location : " + $RGLocation
 
-$Global:RGName = "migration-rg"
+$Global:RGName = "ai-rg"
 "Resource Group Name : " + $RGName
 
 
@@ -29,17 +29,20 @@ $Global:SAKey = "SAKey"
 "Storage Account key name : "  + $SAKey
 
 
+
 #######################################################################
 # Steps :
 
 $script = "commands\ResourceGroup\ResourceGroup_create.ps1"
 .$script
 
-$script = "commands\StorageAccount\StorageAccount_create.ps1"
+$script = "commands\ApplicationInsight\AI_create.ps1"
 .$script
 
-$script = "commands\StorageAccount\StorageAccount_keys.ps1"
-.$script
+bash ./setup-script/setup-script.sh $RGName
+
+# $script = "commands\StorageAccount\StorageAccount_keys.ps1"
+# .$script
 
 # $script = "commands\BatchAccount\BA_create.ps1"
 # .$script
