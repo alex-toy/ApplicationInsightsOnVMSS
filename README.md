@@ -12,9 +12,12 @@ Create a VM Scale Set Configure it to be monitored by App Insights
 ## Set up App Insights on VMSS
 We are going to use an Application Insights resource to monitor a VM Scale Set. This will provide us new details about performance-related metrics, and display those metrics for us.
 
-- Run **setup-script.sh** using the command **./setup-script.sh**  to create a VMSS and other resource in your Azure account. Read details on the content of the shell script below. Note : Cloud Lab users will have to avoid running the **az group create** command, as per the inline comments available. If you encounter the permission error, try adding the executable permission by running the command: **chmod +x filename**
+- Run **commands\Configs\config.ps1** script. This will automatically do the follwing tasks :
+    - create a resource group
+    - create an application insight
+    - Run the **setup-script.sh** script. This will create a VMSS and other resource in your Azure account. If you encounter the permission error, try adding the executable permission by running the command: **chmod +x filename**
 
-- Deploy a sample Flask application with Redis backend to at least one of the VMSS instances. The application code is available in the **azure-voting-app-redis-Deploy_to_VMSS** folder. Instructions for doing so are in the README inside the folder.
+- Deploy a sample Flask application with Redis backend to at least one of the VMSS instances. The application code is available in the **azure-voting-app-redis-Deploy_to_VMSS** folder. Instructions for deploying the app locally are in the README inside the folder. Instructions for deploying the app in VMSS are in the file **deployVMSS.md**.
 
 - Once the application deployment is complete, navigate to the VMSS on the web portal. Click 'Insights' on the left-menu under the **Monitoring** section. Enable the Insights. NOTE : Once you enable the Insights, the monitoring data will start getting collected and routed to Insights. It can take up to 10-15 minutes to show up.
 
@@ -26,7 +29,6 @@ We are going to use an Application Insights resource to monitor a VM Scale Set. 
 ## About the setup-script.sh file
 This script will:
 
-- Create a resource group using the az group create command
 - Create a storage account using the az storage account create command
 - Create a network security group using the az network nsg create
 - Create a VMSS with two Linux VMs of type Standard_B1ls, using the az vmss create

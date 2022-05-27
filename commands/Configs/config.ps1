@@ -41,15 +41,6 @@ $script = "commands\ApplicationInsight\AI_create.ps1"
 
 bash ./setup-script/setup-script.sh $RGName
 
-# $script = "commands\StorageAccount\StorageAccount_keys.ps1"
-# .$script
-
-# $script = "commands\BatchAccount\BA_create.ps1"
-# .$script
-
-# $script = "commands\FunctionApp\FA_create.ps1"
-# .$script
-
 
 
 
