@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # Variables
+# Cloud Lab users should use the existing Resource group name, such as, resourceGroup="cloud-demo-153430" 
 resourceGroup=$1
-location="westus"
+location=$2
 osType="UbuntuLTS"
-vmssName="alexei-vmss"
-adminName="alexeiadmin"
-storageAccount="alexeidiag$RANDOM"
+prefix="alexei"
+vmssName="$prefix-vmss"
+adminName="$prefix-admin"
+storageAccount="$prefix-diag$RANDOM"
 bePoolName="$vmssName-bepool"
 lbName="$vmssName-lb"
 lbRule="$lbName-network-rule"
@@ -14,18 +16,21 @@ nsgName="$vmssName-nsg"
 vnetName="$vmssName-vnet"
 subnetName="$vnetName-subnet"
 probeName="tcpProbe"
-vmSize="Standard_B1ls"
+vmSize="Standard_D11_v2_Promo"
 storageType="Standard_LRS"
 
 # Create resource group. 
-# echo "STEP 0 - Creating resource group $resourceGroup..."
+# This command will not work for the Cloud Lab users. 
+# Cloud Lab users can comment this command and 
+# use the existing Resource group name, such as, resourceGroup="cloud-demo-153430" 
+echo "STEP 0 - Creating resource group $resourceGroup..."
 
-# az group create \
-# --name $resourceGroup \
-# --location $location \
-# --verbose
+az group create \
+--name $resourceGroup \
+--location $location \
+--verbose
 
-echo "Resource group utilized: $resourceGroup"
+echo "Resource group created: $resourceGroup"
 
 # Create Storage account
 echo "STEP 1 - Creating storage account $storageAccount"
@@ -143,20 +148,3 @@ az network nsg rule create \
 echo "Port 22 added to NSG: $nsgName"
 
 echo "VMSS script completed!"
-
-
-bash ./setup-script/get-instances.sh resourceGroup vmssName
-
-
-# echo "You can now ssh into your instances :"
-
-# instances=$(az vmss list-instance-connection-info \
-#   --resource-group $resourceGroup \
-#   --name $vmssName --output tsv)
-
-# for instance in $instances
-# do
-#     IFS=':'
-#     read -ra newarr <<< "$instance"
-#     echo "ssh udacityadmin@${newarr[0]} -p ${newarr[1]}"
-# done 

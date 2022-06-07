@@ -4,34 +4,30 @@
 
 
 ################################################################
-# To access the preview Application Insights Azure CLI commands, you first need to run:
-# az extension add -n application-insights
-
-
-################################################################
-"Application insight configuration :"
+"Function App :"
 
 $Global:AIName = "alexeiai"
-"Application insight name : "  + $BAName
-
-$Global:BAApplicationName = "alexeibaa"
-"Batch Application name : "  + $BAApplicationName
-
 
 
 ################################################################
-"CREATE AN APPLICATION INSIGHT :"
+"CREATE AN APPLICATION INSIGHTS :"
 
 az monitor app-insights component create `
     --resource-group $RGName `
-    --app $AIName `
     --location $RGLocation `
+    --app $AIName
     # [--application-type]
     # [--kind]
     # [--tags]
 
+    
 
 
 
 
 
+
+
+
+
+    

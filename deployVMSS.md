@@ -1,7 +1,7 @@
 Deploy the App to VMSS Instance
 =
 
-1. Run the shell script to create the VMSS and related resources.
+1. Run the **commands\steps.ps1** to create the VMSS and related resources.
 
 2. List the connection information of the VMSS instances.
 ```
